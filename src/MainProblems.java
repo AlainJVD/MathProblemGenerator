@@ -1,7 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class MainProblems extends JFrame {
     JPanel jPanel = new JPanel();
@@ -11,10 +9,10 @@ public class MainProblems extends JFrame {
     String calcAnswersBoxText = "Calculate Answers?";
     String generateButtonText = "Go";
 
-    JComboBox<String> problemTypeDrpDwn = new JComboBox<String>(problemTypeList);
+    JComboBox<String> problemTypeDrpDwn = new JComboBox<>(problemTypeList);
     JLabel problemTypeLbl = new JLabel("Type of problem:");
 
-    JComboBox<Integer> numDigitsDrpDwn = new JComboBox<Integer>(numDigitsList);
+    JComboBox<Integer> numDigitsDrpDwn = new JComboBox<>(numDigitsList);
     JLabel numDigitsLbl = new JLabel("Digits in problem:");
 
     JTextField numProblemsTF = new JTextField(5);
@@ -48,6 +46,21 @@ public class MainProblems extends JFrame {
                 ProblemGenerator.GenerateProblems((String) problemTypeDrpDwn.getSelectedItem(), parsedInput);
             }
         });
+
+        addComponentsToPanel();
+        setComponentBounds();
+
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+
+    public static void main(String[] args){
+        new MainProblems();
+
+    }
+
+    private void addComponentsToPanel(){
         jPanel.add(problemTypeDrpDwn);
         jPanel.add(problemTypeLbl);
 
@@ -59,7 +72,9 @@ public class MainProblems extends JFrame {
 
         jPanel.add(calcAnswersBox);
         jPanel.add(goButton);
+    }
 
+    private void setComponentBounds(){
         problemTypeLbl.setBounds(5, 5, 100, 25);
         problemTypeDrpDwn.setBounds(5, 35, 100, 25);
 
@@ -70,13 +85,5 @@ public class MainProblems extends JFrame {
         numProblemsTF.setBounds(255, 35, 50, 25);
         goButton.setBounds(540, 5, 50, 25);
         add(jPanel);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        setVisible(true);
-    }
-
-    public static void main(String[] args){
-        new MainProblems();
-
     }
 }
